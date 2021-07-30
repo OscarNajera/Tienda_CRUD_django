@@ -1,0 +1,18 @@
+{% extends  'layout.html '  %}  
+{% block titulo %}
+    <h1>Registro</h1>
+{% endblock%}
+
+{% block contenido %}
+    <div> formulario  </div>  
+
+  <form action="" method="post"> 
+   {% csrf_token %}
+   {{ xformulario.as_p }}
+   <input type="submit" value="Enviar" >
+
+  </form>
+
+     
+
+{% endblock%}

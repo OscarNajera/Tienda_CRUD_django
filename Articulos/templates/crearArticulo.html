@@ -1,0 +1,37 @@
+{% extends  'layout.html '  %}  
+{% block titulo %}
+    <h1>Creacion de articulo</h1>
+{% endblock%}
+{% block menu %}
+ {{ block.super }} 
+{% endblock %}
+
+<div class="formulario"  >
+    {% block contenido %}
+    <form action="/GuardarArticulo/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="nombre">Nombre del articulo</label>
+            <input type="text" name="nombre" placeholder="titulo">
+        </div>
+        <div>
+            <label for="descripcion">Descripcion</label>
+            <textarea name="descripcion" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <label for="precio">Precio</label>
+            <input type="text" name="precio" placeholder="Precio">       
+        </div>
+ 
+        <div>
+            <label for="img">img</label>
+            <input type="file" name="img" >        
+        </div>
+    
+        <input type="submit" value="Guardar">
+    </form >
+     
+    
+    {% endblock %}
+</div>
+

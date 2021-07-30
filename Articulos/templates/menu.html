@@ -1,0 +1,37 @@
+
+
+{% if request.user.is_authenticated %}
+
+    <p>Bien Venido        {{request.user.username}}  </p>
+
+    <li><a href="/logout">logout</a></li>
+{% else %}
+    <p>Usuario no logueado</p>
+{% endif %}
+
+<ul>
+    <li> <a href="{% url  'inicio' %} ">Inicio</a></li>
+    {% if   request.user.is_authenticated   %}
+
+        <li> <a href="{% url  'pedido' %} ">Tus Pedidos</a></li>
+        <li> <a href="{% url  'compra' %} ">Carrito</a></li> 
+        <li> <a href="{% url  'logout' %}">logout</a></li>
+               
+    {% else  %}
+       <li> <a href="{% url  'registro' %} ">Registro</a></li>
+       <li> <a href="{% url  'login' %} ">Login</a></li>  
+   
+    {% endif  %}
+
+     <li> <a href="{% url  'VerArticulos' %}">VerArticulos</a></li>
+    {% if  request.user.is_staff == 1   and  request.user.username  == "Alonel"%}
+        <li> <a href="/admin/">admin</a></li>  
+        <li> <a href="{% url  'crearArticulo' %}">crearArticulo</a></li>
+    {% endif %}
+    
+    
+
+        
+</ul>
+
+

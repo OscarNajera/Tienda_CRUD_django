@@ -1,0 +1,55 @@
+{% extends  'layout.html '  %}  
+{% block titulo %}
+    <h1>Actualizar</h1>
+    
+{% endblock%}
+
+
+
+{% block contenido %}
+
+<form action="">
+        {% for xarticulos in articulos %}
+
+            <div class="contenido">
+                <h1>{{xarticulos.nombre}}    </h1>
+                <div>
+                    <label for="updatenombre">Actualizar nombre</label>
+                    <input type="text" name="updatenombre" placeholder="titulo">
+                </div>
+
+                <div>
+                    {% if xarticulos.img != "null" and xarticulos.img.url|length >= 1   %}
+                       <img src="{{ xarticulos.img.url }}">  
+                       <div>
+                            <label for="updateimg">Actualizar img</label>
+                            <input type="file" name="updateimg" >        
+                        </div>    
+                    {% endif %}
+                </div>
+                <div>
+                    <div>
+                        <label>Precio: <strong>{{xarticulos.precio}} </strong> </label> 
+                        <label for="precio"> ActualizarPrecio</label>
+                        <input type="text" name="precio" placeholder="Precio">       
+                    </div>
+
+                    <div>
+                        <p>descripcion: {{xarticulos.descripcion}}             </p>
+                        <label for="updatedescripcion">Nueva Descripcion</label>
+                        <textarea name="updatedescripcion" id="" cols="30" rows="10"></textarea>      
+                    </div>
+
+                </div>
+                {% if  request.user.is_staff == 1   and  request.user.username  == "Alonel"%}
+                 <a href="actualizar/{{xarticulos.id}}">actualizar</a></li>  
+            
+            {% endif %}
+            
+             </div>   
+         
+        {% endfor %}
+         
+
+</form>
+{% endblock %}

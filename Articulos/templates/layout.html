@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contenedor{
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin: 0 auto;
+            background-color: #A938FF;
+            padding: 0 20px ;
+            
+            flex-wrap: wrap;
+
+        }
+        .contenedor  .contenido{
+            flex: 0 0 30%;
+            background-color: #2ED5E6;
+            border-radius: 22px;
+            margin: 5px;
+        }
+ 
+        img{
+             max-width: 250px;
+            max-height: 250px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    {% block titulo %}
+    {% endblock%}
+
+
+    {% block menu %}
+        {% include  'menu.html '%}  
+    {% endblock %}
+    
+    {% block contenido %}
+        {% include  'VerArticulosHero.html '%}
+    </div>   
+
+    {% endblock%}
+
+    {% block info1 %}
+    
+    {% endblock %}
+
+    {% block info2 %}
+    {% endblock %}
+    
+    {% block footer %}
+    {% endblock %}    
+
+
+</body>
+</html>

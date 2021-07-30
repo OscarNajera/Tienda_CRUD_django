@@ -1,0 +1,31 @@
+
+{% block contenido %}
+
+<div class="contenedor"> 
+
+{% for xarticulos in articulos %}
+
+    <div class="contenido">
+        <h1>{{xarticulos.nombre}}</h1>
+        <div>
+            {% if xarticulos.img != "null" and xarticulos.img.url|length >= 1   %}
+               <img src="{{ xarticulos.img.url }}">      
+            {% endif %}
+        </div>
+        <div>
+            <p>Precio: <strong>{{xarticulos.precio}} </strong> </p>
+            <p>descripcion: {{xarticulos.descripcion}}            </p>
+        </div>
+        {% if  request.user.is_staff == 1   and  request.user.username  == "Alonel"%}
+         <a href="actualizar/{{xarticulos.id}}">actualizar</a></li>  
+ 
+    {% endif %}
+
+     </div>   
+
+{% endfor %}
+ 
+
+{% endblock %}
+
+</div>
