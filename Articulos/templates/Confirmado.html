@@ -1,0 +1,19 @@
+<h1>Actualizado</h1>
+
+
+{% block contenido %}
+    {% for xarticulos in articulos %}
+         <li> {{xarticulos.nombre}}- x{{xarticulos.descripcion}} - {{xarticulos.precio}}   {{xarticulos.img}} 
+            {% if xarticulos.img != "null" and xarticulos.img.url|length >= 1   %}
+                <img src="{{ xarticulos.img.url }}">  
+                <a href="{{ xarticulos.img.url }}">imagen</a>
+            
+            {% else %}
+             <p>sin articulos</p>
+            {% endif  %}
+
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

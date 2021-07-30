@@ -27,6 +27,7 @@
     {% if  request.user.is_staff == 1   and  request.user.username  == "Alonel"%}
         <li> <a href="/admin/">admin</a></li>  
         <li> <a href="{% url  'crearArticulo' %}">crearArticulo</a></li>
+        
     {% endif %}
     
     

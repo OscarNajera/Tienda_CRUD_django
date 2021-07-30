@@ -8,48 +8,56 @@
 
 {% block contenido %}
 
-<form action="">
+<form action="/Guardaractualizacion/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
         {% for xarticulos in articulos %}
-
-            <div class="contenido">
-                <h1>{{xarticulos.nombre}}    </h1>
-                <div>
-                    <label for="updatenombre">Actualizar nombre</label>
-                    <input type="text" name="updatenombre" placeholder="titulo">
+            
+            <div class="contenidoActualizar">
+                <div hidden='true'> <p>id del articulo {{xarticulos.pk}} </p> <input type="text" value="{{xarticulos.pk}}" name="pk"  >    </div>
+                <div  class="actualizar actualizarNombre">
+                    <h1>{{xarticulos.nombre}}    </h1>                      
+                    <div>
+                        <label for="updatenombre">Actualizar nombre</label>
+                        <input type="text" name="updatenombre" placeholder="titulo">
+                    </div>   
                 </div>
-
-                <div>
+            
+                <div class="actualizar actualizarImagen">
                     {% if xarticulos.img != "null" and xarticulos.img.url|length >= 1   %}
                        <img src="{{ xarticulos.img.url }}">  
-                       <div>
-                            <label for="updateimg">Actualizar img</label>
-                            <input type="file" name="updateimg" >        
-                        </div>    
+
                     {% endif %}
-                </div>
-                <div>
                     <div>
-                        <label>Precio: <strong>{{xarticulos.precio}} </strong> </label> 
-                        <label for="precio"> ActualizarPrecio</label>
-                        <input type="text" name="precio" placeholder="Precio">       
-                    </div>
-
-                    <div>
-                        <p>descripcion: {{xarticulos.descripcion}}             </p>
-                        <label for="updatedescripcion">Nueva Descripcion</label>
-                        <textarea name="updatedescripcion" id="" cols="30" rows="10"></textarea>      
-                    </div>
-
+                        <label for="updateimg">Actualizar img</label>
+                        <input type="file" name="updateimg" >        
+                    </div>    
                 </div>
-                {% if  request.user.is_staff == 1   and  request.user.username  == "Alonel"%}
-                 <a href="actualizar/{{xarticulos.id}}">actualizar</a></li>  
-            
-            {% endif %}
-            
+
+                
+                <div class="actualizar">
+                        <label>Precio: <strong>{{xarticulos.precio}} </strong> </label>
+                        <div>
+                            <label for="precio"> Nuevo precio</label>
+                            <input type="text" name="updateprecio" placeholder="Precio">                           
+                        </div> 
+       
+                </div >
+
+                <div class="actualizar">
+                        <p>descripcion: {{xarticulos.descripcion}}    </p>
+                        <div class="actualizarTexarea">
+                            <label for="updatedescripcion">Nueva Descripcion</label>
+                            <textarea name="updatedescripcion" id="" cols="30" rows="10"></textarea>                              
+                        </div>
+    
+                </div>
+
+                
+                <input type="submit" name="" id="" value="Actualizar"> 
              </div>   
          
         {% endfor %}
-         
+
 
 </form>
 {% endblock %}

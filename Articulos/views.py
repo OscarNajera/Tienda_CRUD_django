@@ -101,9 +101,32 @@ def VerArticulosHero(request):
 
 
 def actualizar(request, idx):
-    
     articulos = Articulos.objects.filter(pk=idx)
-    
     return  render(request,"actualizar.html",{'articulos': articulos   }    )  
  
  
+ 
+def Guardaractualizacion(request):
+    
+    
+    if request.method == 'POST':
+        pk  =request.POST['pk']
+        articulos = Articulos.objects.get(pk=pk)
+       
+       
+        xnombre      =request.POST['updatenombre']
+        xdescripcion =request.POST['updatedescripcion']
+        xprecio      =request.POST['updateprecio']
+        
+      
+        articulos.nombre= xnombre
+        articulos.precio= xdescripcion
+        articulos.descripcion= xprecio
+        articulos.img= request.FILES.get('updateimg') 
+         
+        articulos.save()      
+ 
+    else:
+        return HttpResponse("No se puede crear el articulo")
+    return HttpResponse(f"Articulo Actualizado   <a href='/'>Inicio</a> <br>id    {articulos.nombre}")
+  
